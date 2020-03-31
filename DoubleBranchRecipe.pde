@@ -6,7 +6,8 @@ class DoubleBranchRecipe extends BranchRecipe {
     rules.add(new Rule() {
       @Override
       LinkedList<Branch> apply(Branch base) {        
-        base.addChild(new Branch());
+        base.addChild(new Branch(base.size * 0.7, 20));
+        base.addChild(new Branch(base.size * 0.7, -20));
         return base.childs;
       }
     });
