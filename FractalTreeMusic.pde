@@ -9,7 +9,7 @@ void setup() {
   camera = new Camera(width/2, height - 25);
   camera.setBackgroundColor(0, 50, 100);
   
-  fractalTree = new FractalTree(5);
+  fractalTree = new FractalTree(2);
   
   stroke(0, 0, 100);
   strokeWeight(4);

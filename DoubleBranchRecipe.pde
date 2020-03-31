@@ -1,14 +1,13 @@
-import java.util.Iterator;
+import java.util.ListIterator;
 
 class DoubleBranchRecipe extends BranchRecipe {
   public DoubleBranchRecipe() {
     rules = new ArrayList<Rule>();
     rules.add(new Rule() {
       @Override
-      LinkedList<Branch> apply(Branch base) {
-        LinkedList<Branch> sprouts = new LinkedList<Branch>();
-        base.childs = sprouts;
-        return sprouts;
+      LinkedList<Branch> apply(Branch base) {        
+        base.addChild(new Branch());
+        return base.childs;
       }
     });
   }
@@ -16,13 +15,14 @@ class DoubleBranchRecipe extends BranchRecipe {
   @Override
   public void digest(FractalTree fractalTree) {
     //TODO : choisir une rule au hasard a chaque fois
-    Iterator<Branch> itr = fractalTree.activeBranches.iterator();
+    ListIterator<Branch> itr = fractalTree.activeBranches.listIterator();
+    LinkedList<Branch> newBranches = new LinkedList<Branch>();
     while(itr.hasNext()) {
       Branch branch = itr.next();      
-      LinkedList<Branch> newBranches = rules.get(0).apply(branch);
-      fractalTree.activeBranches.addAll(newBranches);
+      newBranches.addAll(rules.get(0).apply(branch));
       fractalTree.deadBranches.add(branch);
       itr.remove();
     }
+    fractalTree.activeBranches.addAll(newBranches);
   }
 }
