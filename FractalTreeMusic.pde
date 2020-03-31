@@ -6,7 +6,7 @@ void setup() {
   size(600, 600);
   colorMode(HSB, 360, 100, 100);
   
-  camera = new Camera(width/2, height-25);
+  camera = new Camera(width/2, height - 25);
   camera.setBackgroundColor(0, 50, 100);
   
   fractalTree = new FractalTree(5);

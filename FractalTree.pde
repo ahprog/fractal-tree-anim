@@ -8,10 +8,13 @@ class FractalTree {
   
   public float branchAngle = 20;
   
+  private Branch root;
+  
   public FractalTree(int steps) {
     this.steps = steps;
     activeBranches = new LinkedList<Branch>();
     deadBranches = new LinkedList<Branch>();
+    root = new Branch();
     generate();
   }
   
@@ -19,24 +22,21 @@ class FractalTree {
     this(1);
   }
   
-  void generateNextStep() {
-    
-  }
-  
+  // Generation
   void generate() {
-    Branch root = new Branch(0, 0);
     activeBranches.add(root);
     for (int i = 0; i < steps; i++) {
       generateNextStep();
     }
   }
   
+  void generateNextStep() {
+    // TODO : ici on devrait pouvoir choisir quelle recette on veut pour chaque step
+    BranchRecipe recipe = new DoubleBranchRecipe();
+    recipe.digest(this);
+  }
+  
   void draw() {
-    for (Branch branch : activeBranches) {
-      branch.draw(); 
-    }
-    for (Branch branch : deadBranches) {
-      branch.draw(); 
-    }
+    root.draw();
   }
 }

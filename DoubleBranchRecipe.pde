@@ -2,10 +2,13 @@ import java.util.Iterator;
 
 class DoubleBranchRecipe extends BranchRecipe {
   public DoubleBranchRecipe() {
+    rules = new ArrayList<Rule>();
     rules.add(new Rule() {
       @Override
       LinkedList<Branch> apply(Branch base) {
-        return new LinkedList<Branch>();
+        LinkedList<Branch> sprouts = new LinkedList<Branch>();
+        base.childs = sprouts;
+        return sprouts;
       }
     });
   }

@@ -5,10 +5,15 @@ class Branch {
   public float size;
   public float rotation; // en degrés
   
+  public Branch parent;
+  public LinkedList<Branch> childs;
+  
   public Branch(PVector position, float rotation, float size) {
     this.position = position;
     this.size = size;
     this.rotation = rotation;
+    this.parent = null;
+    this.childs = new LinkedList<Branch>();
   }
   
   public Branch(PVector position) {
@@ -19,10 +24,19 @@ class Branch {
     this(new PVector(x, y));
   }
   
+  public Branch() {
+    this(0, 0);
+  }
+  
   public void draw() {
     pushMatrix();
+    translate(position.x, position.y);
     rotate(radians(rotation));
-    line(position.x, position.y, position.x, position.y - size);
+    line(0, 0, 0, -size);
+    
+    for(Branch branch : childs) {
+      branch.draw(); 
+    }
     popMatrix();
   }
 }
