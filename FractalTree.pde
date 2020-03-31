@@ -1,14 +1,22 @@
-//Graphismes
-PVector backgroundColor = new PVector(130, 130, 130);
+
+Camera camera;
 
 void setup() {
-  size(600,600);
+  size(600, 600);
+  colorMode(HSB, 360, 100, 100);
+  
+  camera = new Camera(width/2, height/2);
+  camera.setBackgroundColor(0, 50, 100);
+  
+  stroke(0, 0, 100);
+  strokeWeight(4);
+  strokeCap(ROUND);
 }
 
 void draw() {
-  background(backgroundColor.x, backgroundColor.y, backgroundColor.z);
-  stroke(255);
-  strokeWeight(4);
-  strokeCap(ROUND);
-  line(20, 30, 80, 30);
+  background(camera.backgroundColor.x, camera.backgroundColor.y, camera.backgroundColor.z);
+  translate(camera.position.x, camera.position.y);
+  rotate(camera.rotation);
+  Branch branch = new Branch(0, 0);
+  branch.draw();
 }
