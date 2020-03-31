@@ -1,6 +1,6 @@
 class Camera {
   public PVector position;
-  public float rotation; // l'angle de rotation est en radians
+  public float rotation; // l'angle de rotation est en degrés
   public PVector backgroundColor;
   
   public Camera(float x, float y) {

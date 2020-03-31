@@ -3,7 +3,7 @@ class Branch {
   
   public PVector position;
   public float size;
-  public float rotation; // en radians
+  public float rotation; // en degrés
   
   public Branch(PVector position, float rotation, float size) {
     this.position = position;
@@ -21,7 +21,7 @@ class Branch {
   
   public void draw() {
     pushMatrix();
-    rotate(rotation);
+    rotate(radians(rotation));
     line(position.x, position.y, position.x, position.y - size);
     popMatrix();
   }
