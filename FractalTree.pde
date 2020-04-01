@@ -22,6 +22,10 @@ class FractalTree {
   
   // Generation
   void generate() {
+    activeBranches = new LinkedList<Branch>();
+    deadBranches = new LinkedList<Branch>();
+    root = new Branch();
+    
     activeBranches.add(root);
     for (int i = 0; i < steps; i++) {
       generateNextStep();

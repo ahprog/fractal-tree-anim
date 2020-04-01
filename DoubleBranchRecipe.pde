@@ -11,6 +11,29 @@ class DoubleBranchRecipe extends BranchRecipe {
         return base.childs;
       }
     });
+    rules.add(new Rule() {
+      @Override
+      LinkedList<Branch> apply(Branch base) {        
+        base.addChild(new Branch(base.size * 0.8, 30));
+        base.addChild(new Branch(base.size * 0.8, -20));
+        return base.childs;
+      }
+    });
+    rules.add(new Rule() {
+      @Override
+      LinkedList<Branch> apply(Branch base) {        
+        base.addChild(new Branch(base.size * 0.8, 20));
+        base.addChild(new Branch(base.size * 0.8, -30));
+        return base.childs;
+      }
+    });
+    rules.add(new Rule() {
+      @Override
+      LinkedList<Branch> apply(Branch base) {        
+        base.addChild(new Branch(base.size * 0.5, -10));
+        return base.childs;
+      }
+    });
   }
   
   @Override
@@ -20,7 +43,7 @@ class DoubleBranchRecipe extends BranchRecipe {
     LinkedList<Branch> newBranches = new LinkedList<Branch>();
     while(itr.hasNext()) {
       Branch branch = itr.next();      
-      newBranches.addAll(rules.get(0).apply(branch));
+      newBranches.addAll(rules.get(int(random(rules.size()))).apply(branch));
       fractalTree.deadBranches.add(branch);
       itr.remove();
     }
