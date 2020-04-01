@@ -3,6 +3,8 @@ class Branch {
   public PVector worldPosition;
   public float worldRotation;
   public float size;
+  public float maxSize;
+  public float sizePercent;
   public float rotation; // en degrés
   
   public PVector hsb;
@@ -11,12 +13,14 @@ class Branch {
   public LinkedList<Branch> childs;
   
   public Branch(float size, float rotation) {
-    this.size = size;
+    this.size = 0;
     this.rotation = rotation;
     this.parent = null;
     this.childs = new LinkedList<Branch>();
     this.worldPosition = new PVector(0, 0);
     this.hsb = new PVector(0, 0, 100);
+    this.maxSize = size;
+    this.sizePercent = 0.0;
   }
   
   public Branch() {
@@ -35,6 +39,11 @@ class Branch {
     child.setParent(this);
   }
   
+  public void updateSize(float percent) {
+    sizePercent += percent;
+    size = maxSize * sizePercent;
+  }
+  
   public void draw() {
     //TODO : la world position ne devrait etre gardée que dans une seule branche special que suivrait le travelling effect
     pushMatrix();
@@ -46,5 +55,9 @@ class Branch {
       branch.draw();
     }
     popMatrix();
+  }
+  
+  public void resetColor() {
+    hsb = new PVector(0, 0, 100);
   }
 }

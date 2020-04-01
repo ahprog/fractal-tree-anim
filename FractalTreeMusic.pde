@@ -11,7 +11,7 @@ void setup() {
   else camera = new Camera(width/2, height/2);
   camera.setBackgroundColor(0, 50, 100);
 
-  fractalTree = new FractalTree(15);
+  fractalTree = new FractalTree(18);
 
   stroke(0, 0, 100);
   strokeWeight(4);
@@ -24,7 +24,8 @@ void draw() {
   if (DEBUG_MODE) drawDefault();
   else drawFocus();
   
-  TravellingEffect.zoom *= 1.01;
+  //faudrait que le zoom soit proportionnel à la taille de la branche visée
+  TravellingEffect.zoom *= 1.0025;
   camera.rotation += 0.1;
 }
 
@@ -41,16 +42,16 @@ void drawFocus() {
   
   translate(camera.position.x, camera.position.y);
   rotate(radians(camera.rotation));
-  translate(-TravellingEffect.focusPoint.x * TravellingEffect.zoom, -TravellingEffect.focusPoint.y * TravellingEffect.zoom);
+  translate(-TravellingEffect.getFocusPoint().x * TravellingEffect.zoom, -TravellingEffect.getFocusPoint().y * TravellingEffect.zoom);
 
   fractalTree.draw();
-  point(TravellingEffect.focusPoint.x * TravellingEffect.zoom, TravellingEffect.focusPoint.y * TravellingEffect.zoom);
+  point(TravellingEffect.getFocusPoint().x * TravellingEffect.zoom, TravellingEffect.getFocusPoint().y * TravellingEffect.zoom);
   popMatrix();
 }
 
 void mouseMoved(MouseEvent e) {
   if (DEBUG_MODE) return;
-  TravellingEffect.zoom = lerp(1, 10, e.getX()/float(width));
+  //TravellingEffect.zoom = lerp(1, 10, e.getX()/float(width));
 }
 
 void keyPressed(KeyEvent e) {

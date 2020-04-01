@@ -7,6 +7,8 @@ class Camera {
     this.position = new PVector(x, y);
     this.rotation = 0;
     this.backgroundColor = new PVector(0, 0, 0);
+    
+    TravellingEffect.focusBranch = new Branch();
   }  
 
   public Camera() {
