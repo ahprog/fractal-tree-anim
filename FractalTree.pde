@@ -30,15 +30,17 @@ class FractalTree {
     for (int i = 0; i < steps; i++) {
       generateNextStep();
     }
+
+    Branch baseFocusBranch = (activeBranches.size() == 0) ? deadBranches.getLast() : activeBranches.get(0);
     
-    activeBranches.get(0).hsb = new PVector(0, 100, 100);
-    Branch baseFocusBranch = activeBranches.get(0);
+    baseFocusBranch.hsb = new PVector(0, 100, 100);
     TravellingEffect.focusPoint.x = baseFocusBranch.worldPosition.x + baseFocusBranch.size * cos(radians(baseFocusBranch.worldRotation + 270));
     TravellingEffect.focusPoint.y = baseFocusBranch.worldPosition.y + baseFocusBranch.size * sin(radians(baseFocusBranch.worldRotation + 270));
   }
   
   void generateNextStep() {
     // TODO : ici on devrait pouvoir choisir quelle recette on veut pour chaque step
+    //BranchRecipe recipe = new DryBranchRecipe();
     BranchRecipe recipe = new DoubleBranchRecipe();
     recipe.digest(this);
   }

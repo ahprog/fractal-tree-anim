@@ -1,4 +1,4 @@
-final boolean DEBUG_MODE = false;
+final boolean DEBUG_MODE = true;
 
 Camera camera;
 FractalTree fractalTree;
@@ -11,7 +11,7 @@ void setup() {
   else camera = new Camera(width/2, height/2);
   camera.setBackgroundColor(0, 50, 100);
 
-  fractalTree = new FractalTree(6);
+  fractalTree = new FractalTree(8);
 
   stroke(0, 0, 100);
   strokeWeight(4);
@@ -23,8 +23,6 @@ void draw() {
 
   if (DEBUG_MODE) drawDefault();
   else drawFocus();
-
-  println(TravellingEffect.focusPoint);
 }
 
 void drawDefault() {
