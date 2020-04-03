@@ -12,8 +12,8 @@ class DoubleBranchRecipe extends BranchRecipe {
     rules.add(new Rule() {
       @Override
       LinkedList<Branch> apply(Branch base) {        
-        base.addChild(new Branch(base.size * 0.8, 30));
-        base.addChild(new Branch(base.size * 0.8, -20));
+        base.addChild(new Branch(base.size * 0.8, -30));
+        base.addChild(new Branch(base.size * 0.8, 20));
         return base.childs;
       }
     });

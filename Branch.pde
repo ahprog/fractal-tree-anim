@@ -9,6 +9,8 @@ class Branch {
   
   public PVector hsb;
   
+  public boolean isFocused;
+  
   public Branch parent;
   public LinkedList<Branch> childs;
   
@@ -21,6 +23,7 @@ class Branch {
     this.hsb = new PVector(0, 0, 100);
     this.maxSize = size;
     this.sizePercent = 0.0;
+    this.isFocused = false;
   }
   
   public Branch() {
@@ -29,12 +32,21 @@ class Branch {
   
   public void setParent(Branch parent) {
     this.parent = parent;
-    worldRotation = rotation + parent.worldRotation;
-    worldPosition.x = parent.worldPosition.x + parent.size * cos(radians(parent.worldRotation + 270));
-    worldPosition.y = parent.worldPosition.y + parent.size * sin(radians(parent.worldRotation + 270));
+    if (isFocused) {
+      worldRotation = rotation + parent.worldRotation;
+      worldPosition.x = parent.worldPosition.x + parent.size * cos(radians(parent.worldRotation + 270));
+      worldPosition.y = parent.worldPosition.y + parent.size * sin(radians(parent.worldRotation + 270));
+    }
   }
   
   public void addChild(Branch child) {
+    if (isFocused) {
+      isFocused = false;
+      child.isFocused = true;
+      TravellingEffect.focusBranch.resetColor();
+      this.hsb = new PVector(0, 100, 100);
+      TravellingEffect.focusBranch = this;
+    }
     childs.add(child);
     child.setParent(this);
   }

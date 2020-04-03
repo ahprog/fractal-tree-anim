@@ -39,6 +39,7 @@ class FractalTree {
     activeBranches = new LinkedList<Branch>();
     deadBranches = new LinkedList<Branch>();
     root = new Branch();
+    root.isFocused = true;
     
     activeBranches.add(root);
     launchAnim();
