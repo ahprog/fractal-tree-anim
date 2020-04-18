@@ -1,3 +1,6 @@
+/**
+ * Abstraction d'une camera dans le plan 2D
+ */
 class Camera {
   public PVector position;
   public float rotation; // l'angle de rotation est en degrés
@@ -13,10 +16,6 @@ class Camera {
 
   public Camera() {
     this(0, 0);
-  }
-  
-  public void move(PVector offset) {
-    position.add(offset);
   }
 
   public void setBackgroundColor(float h, float s, float b) {

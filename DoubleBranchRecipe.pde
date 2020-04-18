@@ -1,3 +1,6 @@
+/**
+ * Exemple de BranchRecipe
+ */ 
 class DoubleBranchRecipe extends BranchRecipe {
   public DoubleBranchRecipe() {
     rules = new ArrayList<Rule>();
